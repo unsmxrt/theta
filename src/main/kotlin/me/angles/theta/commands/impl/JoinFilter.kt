@@ -24,7 +24,7 @@ class JoinFilter : Command("JoinFilter", "manage the thing that checks members w
             }
             "disable", "false" -> {
                 profile.checkOnJoin = false
-                reply(message, "Success! Now the bot won't members that join the server.")
+                reply(message, "Success! Now the bot won't check members that join the server.")
             }
             "action" -> {
                 if(args.size > 1) {
