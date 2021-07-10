@@ -11,7 +11,7 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter
 class Watcher : ListenerAdapter() {
 
     override fun onGuildMessageReceived(event: GuildMessageReceivedEvent)  {
-        if(event.author.isBot || !getProfileByID(event.guild.idLong)) return
+        if(event.author.isBot || !getProfileByID(event.guild.idLong).checkMassMentions) return
         executorService.execute(MentionCheckTask(event))
     }
 
