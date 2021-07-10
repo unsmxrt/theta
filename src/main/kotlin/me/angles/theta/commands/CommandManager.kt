@@ -9,7 +9,7 @@ fun getCommands(): List<Command> = commands
 
 fun init() = commands.addAll(
     listOf(
-        MaxMentions(), JoinFilter(), Prefix(), Help(), Info(), MassKick()
+        MaxMentions(), JoinFilter(), Prefix(), Help(), Info(), MassKick(), Ping()
     )
 )
 
