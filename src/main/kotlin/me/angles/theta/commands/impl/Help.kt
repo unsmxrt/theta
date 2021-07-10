@@ -15,10 +15,12 @@ import java.util.concurrent.TimeUnit
 val color = Color(59, 229, 245).rgb
 class Help : Command("Help", "Supid dumbass?!?!?!?!?", "figure it out bich", Permission.VIEW_CHANNEL)
 {
-    override fun execute(message: Message, args: List<String>, prefix: String) {
-        reply(message, "i need help too\nno help for you baii") { _ ->
-            message.reply("ok here is help").mentionRepliedUser(false).queueAfter(2, TimeUnit.SECONDS) {
-               it.editMessage(buildEmbed(message, prefix)).queue()
+    init {
+        function = { message, args, prefix ->
+            reply(message, "i need help too\nno help for you baii") { _ ->
+                message.reply("ok here is help").mentionRepliedUser(false).queueAfter(2, TimeUnit.SECONDS) {
+                    it.editMessage(buildEmbed(message, prefix)).queue()
+                }
             }
         }
     }

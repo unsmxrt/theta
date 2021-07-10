@@ -17,8 +17,8 @@ class MemberCheckTask(private val event: GuildMemberJoinEvent) : Runnable {
                     Action.BAN -> event.member.ban(0, "Sus acc").queue()
                 }
             }
-        }
     }
+}
 
 private fun checkAccountDate(profile: GuildProfile, user: User): Boolean {
     val daysSinceCreated = ChronoUnit.DAYS.between(user.timeCreated.toInstant(), Instant.now())

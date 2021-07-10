@@ -9,8 +9,10 @@ import java.lang.StringBuilder
 
 class Info : Command("Info", "sends things about da bot", "\\info", Permission.ADMINISTRATOR)
 {
-    override fun execute(message: Message, args: List<String>, prefix: String) {
-        sendInfo(message)
+    init {
+        function = { message, args, prefix ->
+            sendInfo(message)
+        }
     }
 
 }

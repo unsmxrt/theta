@@ -7,16 +7,19 @@ import net.dv8tion.jda.api.Permission
 import net.dv8tion.jda.api.entities.Message
 
 class Prefix : Command("Prefix", "#botsrights", "\\prefix <prefix no space support!!!?!>", Permission.MANAGE_SERVER) {
-    override fun execute(message: Message, args: List<String>, prefix: String) {
-        if(args.isEmpty()) {
-            reply(message, "provide the prefix dum bass")
-            return
-        }
-        getProfileByID(message.guild.idLong).let {
-            it.prefix = args[0]
-            if(!it.prefix.contains("`"))
-            reply(message, "set prefix to ${it.prefix}")
-            else reply(message, "changed prefix")
+
+    init {
+        function = f@{ message, args, prefix ->
+            if(args.isEmpty()) {
+                reply(message, "provide the prefix dum bass")
+                return@f
+            }
+            getProfileByID(message.guild.idLong).let {
+                it.prefix = args[0]
+                if(!it.prefix.contains("`"))
+                    reply(message, "set prefix to ${it.prefix}")
+                else reply(message, "changed prefix")
+            }
         }
     }
 }
