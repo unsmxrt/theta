@@ -10,7 +10,7 @@ private val warned = ArrayList<User>() //list of users that have received warnin
 class MentionCheckTask (private val event: GuildMessageReceivedEvent) : Runnable {
     override fun run() {
         val profile = getProfileByID(event.guild.idLong)
-        if (profile.checkMassMentions && event.message.mentionedUsers.size >= profile.maxMentions) {
+        if (event.message.mentionedUsers.size >= profile.maxMentions) {
             if (warned.contains(event.author) || !profile.warn) {
                 when (profile.onMassMentionAction) {
                     Action.BAN -> event.member?.ban(0, "Mass Mentioning")?.queue()
