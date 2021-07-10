@@ -14,6 +14,10 @@ class Watcher : ListenerAdapter() {
         executorService.execute(MentionCheckTask(event))
     }
 
-    override fun onGuildMemberJoin(event: GuildMemberJoinEvent) = executorService.execute(MemberCheckTask(event))
+    override fun onGuildMemberJoin(event: GuildMemberJoinEvent) {
+       if(getProfileByID(event.guild.idLong).checkOnJoin) {
+           executorService.execute(MemberCheckTask(event))
+       } 
+    }
 
 }
