@@ -3,6 +3,7 @@ package me.angles.theta.listeners
 import me.angles.theta.executorService
 import me.angles.theta.tasks.MemberCheckTask
 import me.angles.theta.tasks.MentionCheckTask
+import me.angles.theta.config.getProfileByID
 import net.dv8tion.jda.api.events.guild.member.GuildMemberJoinEvent
 import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent
 import net.dv8tion.jda.api.hooks.ListenerAdapter
@@ -10,7 +11,7 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter
 class Watcher : ListenerAdapter() {
 
     override fun onGuildMessageReceived(event: GuildMessageReceivedEvent)  {
-        if(event.author.isBot) return
+        if(event.author.isBot || !getProfileByID(event.guild.idLong)) return
         executorService.execute(MentionCheckTask(event))
     }
 
